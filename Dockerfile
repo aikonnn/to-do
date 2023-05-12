@@ -6,6 +6,8 @@ WORKDIR /
 
 COPY . .
 
+RUN ping -c 1 db
+
 RUN npm install
 
 CMD ["npm", "run", "dev"]
@@ -17,6 +19,7 @@ FROM node:latest as prod
 WORKDIR /
 
 COPY . .
+
 
 RUN npm install
 

@@ -12,5 +12,5 @@ create table if not exists tasks(
     urgency int
 );
 
-insert into users(email, pass) values('johnd@hotmail.com','dummypass');
+insert into users(email,pass) values('johnd@hotmail.com','dummypass');
 
