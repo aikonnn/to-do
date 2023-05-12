@@ -1,12 +1,14 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 create table if not exists users(
-    id serial PRIMARY KEY, 
+    id uuid DEFAULT uuid_generate_v4 (), 
     email text, 
     pass text
 );
 
 
 create table if not exists tasks(
-    id serial PRIMARY KEY, 
+    id uuid DEFAULT uuid_generate_v4 (), 
     user_id int, 
     task text, 
     urgency int
