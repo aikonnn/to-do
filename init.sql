@@ -1,17 +1,16 @@
-create database if not exists todo;
-use todo;
-
 create table if not exists users(
-    id int PRIMARY KEY, 
+    id serial PRIMARY KEY, 
     email text, 
     pass text
 );
 
 
 create table if not exists tasks(
-    id int, 
+    id serial PRIMARY KEY, 
     user_id int, 
     task text, 
     urgency int
 );
+
+insert into users(email, pass) values('johnd@hotmail.com','dummypass');
 
