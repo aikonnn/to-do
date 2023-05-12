@@ -1,4 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 create table if not exists users(
     id uuid DEFAULT uuid_generate_v4 (), 
@@ -14,5 +15,5 @@ create table if not exists tasks(
     urgency int
 );
 
-insert into users(email,pass) values('johnd@hotmail.com','dummypass');
+insert into users(email,pass) values('johnd@hotmail.com',crypt('dummypass', gen_salt('bf')));
 
