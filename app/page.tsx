@@ -2,11 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
-
-  function handleLogin(){
-    console.log("login");
-  }
-
   return (
     <main className="flex h-screen flex-col items-center justify-center p-24">
       <div className='py-5'>welcome, please login</div>
