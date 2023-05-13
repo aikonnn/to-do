@@ -10,7 +10,7 @@ create table if not exists users(
 
 create table if not exists tasks(
     id uuid DEFAULT uuid_generate_v4 (), 
-    user_id int, 
+    user_id uuid, 
     task text, 
     urgency int
 );
