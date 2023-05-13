@@ -19,10 +19,15 @@ export default function List() {
       };
   
       dataFetch();
-    }, []);
+    }, [addTask]);
 
-    function addTask(){
+    async function addTask(){
       //do nothing for now
+      const data = await (
+        await fetch(
+          "/api/addTask"
+        )
+      ).json();
     }
 
     return (
