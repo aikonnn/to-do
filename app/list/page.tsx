@@ -15,7 +15,7 @@ export default function List() {
         ).json();
   
         // set state when the data received
-        setEntries(data);
+        setEntries(data.answer);
       };
   
       dataFetch();
@@ -33,7 +33,7 @@ export default function List() {
         <ul>
           {entries.map((task: any) => 
           <li key={task.id}>
-            <Entry id = {task.id} userid = {task.userid} task = {task.task} urgency = {task.urgency} />
+            <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} />
           </li>)}
         </ul>
         </div>

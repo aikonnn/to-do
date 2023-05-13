@@ -16,4 +16,5 @@ create table if not exists tasks(
 );
 
 insert into users(email,pass) values('johnd@hotmail.com',crypt('dummypass', gen_salt('bf')));
+insert into tasks(user_id, task, urgency) values(uuid_generate_v4(), 'walk the dog' ,2);
 
