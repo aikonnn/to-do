@@ -1,6 +1,6 @@
 const {Client} = require("pg");
 
-const client = new Client("postgres://postgres:pass@localhost:5432/todo");
+const client = new Client("postgres://postgres:pass@" + process.env.BASE_ADDR +":5432/todo");
 
 client.connect();
 

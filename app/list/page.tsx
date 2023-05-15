@@ -19,7 +19,7 @@ export default function List() {
       };
   
       dataFetch();
-    }, [addTask]);
+    }, [addTask, handleChange]);
 
     async function addTask(){
       //do nothing for now
@@ -30,6 +30,10 @@ export default function List() {
       ).json();
     }
 
+    async function handleChange(func: Function) {
+      func();
+    }
+
     return (
       <main className="flex h-screen flex-col items-center justify-center p-24">
         <div className="flex items-center justify-center flex-col">
@@ -38,7 +42,7 @@ export default function List() {
         <ul>
           {entries.map((task: any) => 
           <li key={task.id}>
-            <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} />
+            <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
           </li>)}
         </ul>
         </div>
