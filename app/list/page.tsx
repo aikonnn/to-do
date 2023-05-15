@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function List() {
     const [entries, setEntries] = useState([]);
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
       // fetch data
@@ -17,6 +18,7 @@ export default function List() {
   
         // set state when the data received
         setEntries(data.answer);
+        setLoaded(true);
       };
   
       dataFetch();
@@ -35,14 +37,18 @@ export default function List() {
       func();
     }
 
+    if(!loaded) return (<main className="flex h-screen flex-col items-center justify-center p-24">
+      <div>loading</div>
+    </main>)
+
     return (
       <main className="flex h-screen flex-col items-center justify-center p-24">
         <div className="flex items-center justify-center flex-col">
         <div className='py-5'>heres your tasks for today</div>
         <a className="bg-violet-800 py-2 px-3 rounded-xl cursor-pointer" onClick={e => addTask()}>add new tasks</a>
-        <ul>
+        <ul className="w-screen flex-col flex items-center justify-center">
           {entries.map((task: any) => 
-          <li key={task.id}>
+          <li className="w-screen flex items-center justify-center" key={task.id}>
             <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
           </li>)}
         </ul>
