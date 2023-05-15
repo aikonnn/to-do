@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Entry from "./entry"
+import Link from "next/link";
 
 export default function List() {
     const [entries, setEntries] = useState([]);
@@ -45,6 +46,7 @@ export default function List() {
             <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
           </li>)}
         </ul>
+        <button className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'><Link href="/">Sign out</Link></button>
         </div>
       </main>
     )

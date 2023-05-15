@@ -4,7 +4,8 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 create table if not exists users(
     id uuid DEFAULT uuid_generate_v4 (), 
     email text, 
-    pass text
+    pass text,
+    UNIQUE(email)
 );
 
 
