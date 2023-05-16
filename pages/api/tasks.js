@@ -8,7 +8,7 @@ client.connect();
 export default async function addTasks(req, res) {
     if(req.method == 'POST'){
         console.log("adding task");
-        const ans = await client.query("INSERT INTO tasks(user_id, task, urgency) values($1::uuid, 'init' ,1)", [req.body.userid]);
+        const ans = await client.query("INSERT INTO tasks(user_id, task, urgency) values($1::uuid, 'write your task here' ,1)", [req.body.userid]);
         res.status(200).json({
         status: 'success'
         });
