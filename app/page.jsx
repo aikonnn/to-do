@@ -65,7 +65,7 @@ export default function List() {
             <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
           </li>)}
         </ul>
-        <button onClick={() => signOut()} className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>Sign out</button>
+        <button onClick={() => signOut({redirect: false, callbackUrl: '/login'})} className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>Sign out</button>
         </div>
       </main>
     )
