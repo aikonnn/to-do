@@ -5,10 +5,9 @@ const client = new Client(`postgres://${process.env.POSTGRES_USER}:${process.env
 client.connect();
 
 
-export default async function addTasks(req, res) {
-    console.log("adding task");
-    const ans = await client.query("INSERT INTO tasks(user_id, task, urgency) values($1::uuid, 'init' ,1)", [req.body.userid]);
+export default async function getTasks(req, res) {
+    const ans = await client.query("SELECT * from tasks where user_id = $1::uuid", [req.query.userid]);
     res.status(200).json({
-        status: 'success'
+        answer: ans.rows
     });
 }

@@ -1,9 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import Entry from "./entry"
-import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function List() {
+    const {data : session} = useSession();
+    if(!session){
+      redirect("/login");
+    }
     const [entries, setEntries] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
@@ -12,7 +17,7 @@ export default function List() {
       const dataFetch = async () => {
         const data = await (
           await fetch(
-            "/api/getTasks"
+            "/api/getTasks/" + session.user.id,
           )
         ).json();
   
@@ -28,12 +33,20 @@ export default function List() {
       //do nothing for now
       const data = await (
         await fetch(
-          "/api/addTask"
+          "/api/addTask",{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              userid: session.user.id
+            })
+          }
         )
       ).json();
     }
 
-    async function handleChange(func: Function) {
+    async function handleChange(func) {
       func();
     }
 
@@ -47,12 +60,12 @@ export default function List() {
         <div className='py-5'>heres your tasks for today</div>
         <a className="bg-violet-800 py-2 px-3 rounded-xl cursor-pointer" onClick={e => addTask()}>add new tasks</a>
         <ul className="w-screen flex-col flex items-center justify-center">
-          {entries.map((task: any) => 
+          {entries.map((task) => 
           <li className="w-screen flex items-center justify-center" key={task.id}>
             <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
           </li>)}
         </ul>
-        <button className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'><Link href="/">Sign out</Link></button>
+        <button onClick={() => signOut()} className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>Sign out</button>
         </div>
       </main>
     )

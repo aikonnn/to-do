@@ -6,7 +6,7 @@ client.connect();
 
 
 export default async function getTasks(req, res) {
-    const ans = await client.query("SELECT * from tasks");
+    const ans = await client.query("SELECT * from tasks where userid = $1", [req.body.userid]);
     res.status(200).json({
         answer: ans.rows
     });
