@@ -33,7 +33,7 @@ export default function List() {
       //do nothing for now
       const data = await (
         await fetch(
-          "/api/addTask",{
+          "/api/tasks",{
             method: "POST",
             headers: {
               "Content-Type": "application/json"
