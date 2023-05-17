@@ -3,6 +3,7 @@ services:
     build:
       context: .
       target: prod
+    image: todo:latest
     ports:
       - 3000:3000
     expose:

@@ -1,28 +1,16 @@
-#dev
+FROM node:16-alpine as prod
 
-FROM node:latest as dev
+WORKDIR /web
 
-WORKDIR /
-
-COPY . .
-
-RUN ping -c 1 db
+COPY package*.json ./
 
 RUN npm install
 
-CMD ["npm", "run", "dev"]
-
-#prod
-
-FROM node:latest as prod
-
-WORKDIR /
-
 COPY . .
-
-
-RUN npm install
 
 RUN npm run build
 
+EXPOSE 3000
+
 CMD ["npm", "run", "start"]
+

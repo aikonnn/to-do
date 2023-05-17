@@ -3,7 +3,7 @@ import client from "../../utils/dbpool";
 
 export default async function addTasks(req, res) {
     if(req.method == 'POST'){
-        const ans = await client.query("INSERT INTO tasks(user_id, task, urgency) values($1::uuid, 'write your task here' ,1)", [req.body.userid]);
+        const ans = await client.query("INSERT INTO tasks(user_id, task, urgency) values($1::uuid, 'write your task here' ,3)", [req.body.userid]);
         res.status(200).json({
         status: 'success'
         });
