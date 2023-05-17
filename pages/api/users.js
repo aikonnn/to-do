@@ -3,9 +3,6 @@ import client from "../../utils/dbpool";
 
 export default async function userHandler(req, res) {
     if(req.method === 'POST'){
-        console.log("called regis");
-        console.log(req.body.email);
-        console.log(req.body.pass);
         const dupe = await client.query(`SELECT * FROM users where email ='${req.body.email}'`);
         if(dupe.rows.length !== 0){
             res.status(401).json({

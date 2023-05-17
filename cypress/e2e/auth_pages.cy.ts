@@ -1,4 +1,4 @@
-describe('Authentication', () => {
+describe('Authentication Pages', () => {
   it('login fail', () => {
     cy.visit('localhost:3000/')
     cy.url().should('include', '/login')
@@ -27,5 +27,8 @@ describe('Authentication', () => {
 
     cy.get('#pass-input').type('newpass')
     cy.get('#pass-input').should('have.value', 'newpass')
+
+    cy.contains('Registered? log in here.').click()
+    cy.url().should('include', '/login')
   })
 })
