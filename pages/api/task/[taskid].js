@@ -1,8 +1,4 @@
-const {Client} = require("pg");
-
-const client = new Client(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.BASE_ADDR}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
-
-client.connect();
+import client from "../../../utils/dbpool";
 
 
 export default async function handleTasks(req, res) {

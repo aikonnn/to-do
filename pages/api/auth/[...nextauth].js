@@ -1,15 +1,12 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import {Client} from "pg";
-import bcrypt from "bcrypt";
-
-const client = new Client(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.BASE_ADDR}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
-client.connect();
+import client from "../../../utils/dbpool";
 
 export const authOptions = {
   providers: [
     CredentialsProvider({
         name: "Credentials",
+        secret: process.env.NEXTAUTH_SECRET,
         credentials: {
           email: { label: "Email", type: "email" },
           password: { label: "Password", type: "password" }

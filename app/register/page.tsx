@@ -6,9 +6,13 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   async function handleSubmit(e: React.FormEvent){
     e.preventDefault();
+
+    setError("");
+    setSuccess("");
 
     const data = await (
       await fetch(
@@ -27,13 +31,16 @@ export default function Register() {
     ).json();
 
     if(data.error){
-      setError("registration failed, use a different email")
+      setError("registration failed, use a different email");
+    } else {
+      setSuccess("registration successful! welcome");
     }
   }
 
   return (
     <main className="flex h-screen flex-col items-center justify-center p-24">
       {error != '' && <div className='bg-red-500 px-3 py-2 rounded-xl'>{error}</div>}
+      {success != '' && <div className='bg-green-500 px-3 py-2 rounded-xl'>{success}</div>}
       <div className='py-5'>register</div>
       <form onSubmit={e=>handleSubmit(e)} className="flex flex-col items-center justify-center">
       <input onChange={(e)=>{setEmail(e.target.value)}} placeholder='email' className='my-2 px-3 py-1 rounded-md text-black focus:bg-black-100' type="email" required></input>
