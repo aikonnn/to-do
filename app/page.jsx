@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Entry from "./entry"
 import { redirect } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 
 export default function List() {
     const {data : session} = useSession();
@@ -11,6 +11,7 @@ export default function List() {
     }
     const [entries, setEntries] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [change, setChange] = useState(false);
 
     useEffect(() => {
       // fetch data
@@ -27,7 +28,7 @@ export default function List() {
       };
   
       dataFetch();
-    }, [addTask, handleChange]);
+    }, [change]);
 
     async function addTask(){
       //do nothing for now
@@ -44,10 +45,13 @@ export default function List() {
           }
         )
       ).json();
+
+      setChange(!change);
     }
 
     async function handleChange(func) {
       func();
+      setChange(!change);
     }
 
     if(!loaded) return (<main className="flex h-screen flex-col items-center justify-center p-24">

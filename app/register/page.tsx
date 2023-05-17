@@ -44,11 +44,11 @@ export default function Register() {
       {success != '' && <div className='bg-green-300 px-3 py-2 rounded-xl'>{success}</div>}
       <div className='py-5'>register</div>
       <form onSubmit={e=>handleSubmit(e)} className="flex flex-col items-center justify-center">
-      <input onChange={(e)=>{setEmail(e.target.value)}} placeholder='email' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' type="email" required></input>
-      <input onChange={(e)=>{setPass(e.target.value)}} placeholder='password' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' type='password' required></input>
-      <button type='submit' className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>register</button>
+      <input id='email-input' onChange={(e)=>{setEmail(e.target.value)}} placeholder='email' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' type="email" required></input>
+      <input id='pass-input' onChange={(e)=>{setPass(e.target.value)}} placeholder='password' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' type='password' required></input>
+      <button id='submit-btn' type='submit' className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>register</button>
       </form>
-      <a href='/'>Registered? log in here.</a>
+      <a href='/login'>Registered? log in here.</a>
       </div>
     </main>
   )

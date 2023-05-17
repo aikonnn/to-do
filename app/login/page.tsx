@@ -28,12 +28,12 @@ export default function Home() {
   return (
     <main className="flex h-screen flex-col items-center justify-center p-24">
       <div className="flex flex-col items-center justify-center bg-white px-5 py-6 rounded-xl shadow-md">
-        {error != '' && <div className='bg-red-300 px-3 py-2 rounded-xl'>{error}</div>}
+        {error != '' && <div className='bg-red-300 px-3 py-2 rounded-xl' id='err-tag'>{error}</div>}
         <div className='py-5'>welcome, please login</div>
         <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
-        <input onChange={(e)=>{setEmail(e.target.value)}} placeholder='email' type='email' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none'></input>
-        <input onChange={(e)=>{setPass(e.target.value)}} placeholder='password' type='password' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none'></input>
-        <button className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>login</button>
+        <input onChange={(e)=>{setEmail(e.target.value)}} placeholder='email' type='email' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' id='email-input'></input>
+        <input onChange={(e)=>{setPass(e.target.value)}} placeholder='password' type='password' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' id='pass-input'></input>
+        <button className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110' id='login-btn'>login</button>
         </form>
         <a href='/register'>Not registered?</a>
       </div>
