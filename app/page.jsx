@@ -56,16 +56,18 @@ export default function List() {
 
     return (
       <main className="flex h-screen flex-col items-center justify-center p-24">
-        <div className="flex items-center justify-center flex-col">
-        <div className='py-5'>heres your tasks for today</div>
-        <a className="bg-violet-800 py-2 px-3 rounded-xl cursor-pointer" onClick={e => addTask()}>add new tasks</a>
-        <ul className="w-screen flex-col flex items-center justify-center">
-          {entries.map((task) => 
-          <li className="w-screen flex items-center justify-center" key={task.id}>
-            <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
-          </li>)}
-        </ul>
-        <button onClick={() => signOut({redirect: false, callbackUrl: '/login'})} className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>Sign out</button>
+        <div className="w-screen flex flex-col items-center justify-center bg-white shadow-md py-10">
+          <div className="flex items-center justify-center flex-col">
+          <div className='py-5'>heres your tasks for today</div>
+          <a className="transition bg-violet-200 py-2 px-3 rounded-xl cursor-pointer my-3 hover:bg-violet-400 hover:scale-110" onClick={e => addTask()}>add new tasks</a>
+          <ul className="w-screen flex-col flex items-center justify-center">
+            {entries.map((task) => 
+            <li className="w-screen flex items-center justify-center" key={task.id}>
+              <Entry id = {task.id} userid = {task.user_id} task = {task.task} urgency = {task.urgency} handleChange={handleChange}/>
+            </li>)}
+          </ul>
+          <button onClick={() => signOut({redirect: false, callbackUrl: '/login'})} className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110'>Sign out</button>
+          </div>
         </div>
       </main>
     )
