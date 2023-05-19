@@ -1,0 +1,8 @@
+services:
+  cypress:
+      image: cypress/included:latest
+      volumes:
+        - ./tests/cypress:/cypress
+        - ./tests/cypress.config.js:/cypress.config.js
+      depends_on:
+        - web

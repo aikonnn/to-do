@@ -1,6 +1,6 @@
 describe('Authentication Pages', () => {
   it('login fail', () => {
-    cy.visit('localhost:3000/')
+    cy.visit('http://web:3000/')
     cy.url().should('include', '/login')
 
     cy.get('#email-input').type('fake@email.com')
@@ -15,7 +15,7 @@ describe('Authentication Pages', () => {
   })
 
   it('register', () => {
-    cy.visit('localhost:3000/')
+    cy.visit('http://web:3000/')
     cy.url().should('include', '/login')
 
     cy.contains('Not registered?').click()

@@ -35,7 +35,6 @@ export default function Entry(props: any) {
     }
 
     async function editTask(){
-      console.log("send edit to db");
       const data = await (
         await fetch(
           "/api/tasks",{
@@ -62,7 +61,7 @@ export default function Entry(props: any) {
     return (
         <div className="rounded-xl w-4/5 text-slate-800 max-w-xl flex items-center justify-between my-2 bg-violet-200 px-4 py-4">
             <Listbox value={urgency} onChange={setUrgency}>
-            <Listbox.Button className="flex items-center justify-between w-16">{urgency.icon}<HiChevronDown /></Listbox.Button>
+            <Listbox.Button className="flex items-center justify-between w-16" id='stat-btn'>{urgency.icon}<HiChevronDown /></Listbox.Button>
             <Listbox.Options className="absolute bg-white w-32 rounded-xl shadow-lg py-3">
               {status.map((stat) => (
                 <Listbox.Option
