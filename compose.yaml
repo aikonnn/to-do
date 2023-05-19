@@ -1,7 +1,7 @@
 services:
   web:
     build:
-      context: .
+      context: ./web
       target: prod
     image: todo:latest
     ports:
