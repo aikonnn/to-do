@@ -27,6 +27,8 @@ describe('Authentication Pages', () => {
         cy.get('#login-btn').click();
 
         cy.contains('add new tasks').click()
-        cy.contains('write your task here')
+        cy.get('#task-box').should('have.value', 'write your task here');
+
+        cy.get('#delete-btn').click()
       })
   })

@@ -86,10 +86,12 @@ export default function Entry(props: any) {
             onFocus={e=>e.target.value = ''}
             onBlur={e => props.handleChange(editTask)}
             onKeyDown={(e) => handleKeyPress(e)}
+            id="task-box"
             ></input>
             <button 
             className="mx-3" 
             onClick={e => props.handleChange(deleteEntry)}
+            id="delete-btn"
             ><RiDeleteBin6Fill/></button>
         </div>
     )
