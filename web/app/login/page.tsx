@@ -35,6 +35,7 @@ export default function Home() {
         <input onChange={(e)=>{setPass(e.target.value)}} placeholder='password' type='password' className='my-2 px-3 py-1 rounded-md text-black bg-slate-100 !outline-none' id='pass-input'></input>
         <button className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110' id='login-btn'>login</button>
         </form>
+        <button onClick={()=> signIn('google')} className='transition m-3 bg-blue-200 py-1 px-3 text-black rounded-xl hover:bg-blue-400 hover:scale-110' id='login-ggl'>login with google</ button>
         <a href='/register'>Not registered?</a>
       </div>
     </main>

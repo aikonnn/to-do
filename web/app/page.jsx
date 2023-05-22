@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Entry from "./entry"
 import { redirect } from "next/navigation";
 import { useSession, signOut } from "next-auth/react"
@@ -12,18 +12,38 @@ export default function List() {
     const [entries, setEntries] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [change, setChange] = useState(false);
+    const [user_id, setID] = useState('');
 
     useEffect(() => {
-      // fetch data
-      const dataFetch = async () => {
+      const idfetch = async () => {
         const data = await (
           await fetch(
-            "/api/getTasks/" + session.user.id,
+            "/api/users/" + session.user.email,
           )
         ).json();
+
+        setID(data.userid);
+        return data.userid;
+      };
+
+      const dataFetch = async () => {
+        if(user_id === ''){
+          const data = await (
+            await fetch(
+              "/api/getTasks/" + await idfetch(),
+            )
+          ).json();
+          setEntries(data.answer);
+        } else {
+          const data = await (
+            await fetch(
+              "/api/getTasks/" + user_id,
+            )
+          ).json();
+          setEntries(data.answer);
+        }
   
         // set state when the data received
-        setEntries(data.answer);
         setLoaded(true);
       };
   
@@ -40,17 +60,16 @@ export default function List() {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              userid: session.user.id
+              userid: user_id
             })
           }
         )
       ).json();
-
       setChange(!change);
     }
 
     async function handleChange(func) {
-      func();
+      await func();
       setChange(!change);
     }
 

@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from 'next-auth/providers/google';
 import client from "../../../utils/dbpool";
 
 export const authOptions = {
@@ -26,7 +27,11 @@ export const authOptions = {
                 return null;
             }
         }
-      })
+      }),
+      GoogleProvider({
+        clientId: process.env.GOOGLE_ID,
+        clientSecret: process.env.GOOGLE_SECRET,
+       }),
   ],
   callbacks: {
     jwt: async ({ token, user }) => {
