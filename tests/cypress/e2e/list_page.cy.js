@@ -29,6 +29,10 @@ describe('View Tasks', () => {
         cy.contains('add new tasks').click()
         cy.get('#task-box').should('have.value', 'write your task here');
 
+        cy.contains('add new tasks').click()
+        cy.get('li').should('have.length', 2)
+
+        cy.get('#delete-btn').click()
         cy.get('#delete-btn').click()
       })
       it('new task with edit', () => {
@@ -51,7 +55,7 @@ describe('View Tasks', () => {
         cy.get('#delete-btn').click()
       })
 
-      it('new task with edit', () => {
+      it('new task with edit status', () => {
         cy.visit('http://web:3000/')
         cy.url().should('include', '/login')
     
@@ -68,6 +72,18 @@ describe('View Tasks', () => {
 
         cy.get('#stat-btn').click();
         cy.contains('Urgent').click();
+
+        cy.get('#stat-btn').click();
+        cy.contains('Slow').click();
+
+        cy.get('#stat-btn').click();
+        cy.contains('Done').click();
+
+        cy.get('#stat-btn').click();
+        cy.contains('Regular').click();
+
+        cy.get('#stat-btn').click();
+        cy.contains('Emergency').click();
 
         cy.get('#delete-btn').click()
       })
